@@ -1,3 +1,22 @@
+# --- [필독] 라이브러리 자동 설치 코드 (에러 우회용) ---
+import subprocess
+import sys
+
+try:
+    import finance_datareader as fdr
+except ModuleNotFoundError:
+    # 서버에 라이브러리가 없으면 실시간으로 즉시 설치합니다.
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "finance-datareader", "plotly", "pandas"])
+    import finance_datareader as fdr
+# --------------------------------------------------
+
+import streamlit as st
+import pandas as pd
+import plotly.graph_objects as go
+from datetime import datetime, timedelta
+
+# (이하 기존 코드 그대로 유지...)
+
 import streamlit as st
 import pandas as pd
 import finance_datareader as fdr
